@@ -13,6 +13,8 @@ namespace DotNetCoreExample.Services
 
         public List<(string, string, string)> MockBook { get; set; }
 
+        private List<string> _todos = new List<string>() { "Learning angular", "Learning .net core", "Learning spa web app", "Learning bootstrap" };
+
         public DbMockUpService()
         {
 
@@ -20,7 +22,7 @@ namespace DotNetCoreExample.Services
                 new ("Angular for Enterprise-Ready Web Applications", "https://www.tektutorialshub.com/wp-content/uploads/2018/11/Angular-5-From-Theory-To-Practice.jpg", "This is the great book by very experienced authors. The book contains a lot of example codes that are well explained with good illustrations. This book teaches you everything you need to build an Angular application. The books start from basic and covers the advanced techniques like testing, dependency injection, and performance tuning. "),
                 new ("Ng-Book: The Complete Guide to Angular", "https://www.tektutorialshub.com/wp-content/uploads/2018/11/Share-Facebook-Twitter-Pinterest.jpg", "This book very comprehensive and reader-friendly. The book is well organized and covers all the important topics in the Angular. The chapters on Data Architecture in Angular, Redux & Nativescipt is a bonus here. Also, it covers how to migrate from AngularJs to Angular. A Book worth reading"),
                 new ("ASP.NET & .NET Core MVC", "https://th-live-05.slatic.net/p/7f492a91ea9d16cd4e3fab009d771051.jpg_2200x2200q80.jpg_.webp", "หนังสือ คู่มือสร้างเว็บไซต์แบบ Responsive ด้วย ASP.NET & .NET Core MVC ฉบับโปรแกรมเมอร์ โดย ศุภชัย สมพานิช"),
-                new ("Google Analytics", "https://th-live-05.slatic.net/p/a13e9e08d57b09c6910beeb54722ad33.jpg_720x720q80.jpg_.webp", "หนังสือ รู้ข้อมูลเชิงลึกลูกค้าบนเว็บไซต์ด้วย Google Analytics ศุภณัฐ สุขโข"),
+                //new ("Google Analytics", "https://th-live-05.slatic.net/p/a13e9e08d57b09c6910beeb54722ad33.jpg_720x720q80.jpg_.webp", "หนังสือ รู้ข้อมูลเชิงลึกลูกค้าบนเว็บไซต์ด้วย Google Analytics ศุภณัฐ สุขโข"),
                 new ("ASP.NET Core MVC", "https://th-live-05.slatic.net/p/9cf86052a8c6f09714625d8a81f00569.jpg_720x720q80.jpg_.webp", "คู่มือพัฒนาเว็บแอพพลิเคชั่นด้วย ASP.NET Core MVC"),
                 new ("Flutter & Dart", "https://th-live-05.slatic.net/p/99293d9e7a5aa8f392961191aad99038.jpg_720x720q80.jpg_.webp", "พัฒนา Mobile App ด้วย Flutter & Dart"),
                 new ("Bootstrap", "https://th-live-05.slatic.net/p/b564f963f7f7818fbc9fa08ce0989ad4.jpg_720x720q80.jpg_.webp", "สร้างเว็บไซต์แบบ Responsive ด้วย Bootstrap ร่วมกับ CSS และ JavaScript"),
@@ -36,20 +38,25 @@ namespace DotNetCoreExample.Services
                 new ("C# OOP", "https://th-test-11.slatic.net/p/c93451cbd51f7d62ec32727360fddfa6.jpg", "เก่ง C# ให้ครบสูตร ฉบับ OOP"),
                 };
 
+            
+
             Random random = new Random();
 
             Todos = new List<TodoModel>();
             Books = new List<BookModel>();
+            int i = 1;
 
-            for (int i = 0; i < 10; i++)
+            foreach (var item in _todos)
             {
-                TodoModel todo = new TodoModel();
-
-                todo.Id = i + 1;
-                todo.Title = "Titile " + todo.Id;
-                todo.Completed =  i / 2 == 0? true : false;
-                Todos.Add(todo);
+                TodoModel t = new TodoModel();
+                t.Id = i + 1;
+                t.Title = item;
+                Todos.Add(t);
+                if (i < 3) t.Completed = true;
+                i++;
             }
+
+            TodoModel todo = new TodoModel();
 
             int index = 1;
 
